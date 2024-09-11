@@ -14,6 +14,7 @@ entity Book {
     genre: String;                
     summary: String(5000);        
     coverImage: Association to Files; 
+    Files: Composition of many Files on Files.f_id = $self;
 }
 
 entity Files: cuid, managed {
@@ -23,5 +24,6 @@ entity Files: cuid, managed {
     mediaType: String;          
     fileName: String;           
     size: Integer;                
-    url: String;                  
+    url: String;   
+    f_id:Association to Book;               
 }
