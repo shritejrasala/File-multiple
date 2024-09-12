@@ -3,7 +3,7 @@ displayBlock="true"
 xmlns:mvc="sap.ui.core.mvc"
 	xmlns:upload="sap.m.upload">
 	<VBox id= "11" >
-	<Button id="dewdewdw" core:require="{ handler: 'file/ext/fragment/Attachment'}" text="hello" press="handler.onPress" />
+	
 						<upload:UploadSet
 					
 					id="uploadSet"

@@ -8,10 +8,7 @@ sap.ui.define([
 	var that = this;
 
     return {
-        onPress: function(oEvent) {
-            debugger
-            MessageToast.show("Custom handler invoked.");
-        },
+       
 		onAfterItemAdded: function(oEvent) {
 			debugger;
 			var item = oEvent.getParameter("item");
