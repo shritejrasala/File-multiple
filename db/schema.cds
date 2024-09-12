@@ -5,8 +5,8 @@ using {
     managed
 } from '@sap/cds/common';
 
-entity Book {
-    key id: String;
+entity Book: cuid, managed {
+    //key id: String;
     name: String;
     author: String;               
     ISBN: String(13);             

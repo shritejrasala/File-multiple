@@ -15,6 +15,10 @@ sap.ui.define([
 		onAfterItemAdded: function(oEvent) {
 			debugger;
 			var item = oEvent.getParameter("item");
+			
+            var path = this.editFlow.getView().getBindingContext().getPath();
+            var BookId = path.match(/ID=([^,]+)/)[1];
+            console.log(BookId);
 		
 			var _createEntity = function(item) {
 				var data = {
@@ -24,7 +28,7 @@ sap.ui.define([
 				};
 		
 				var settings = {
-					url: "/odata/v4/attachments/Files",
+					url:`/odata/v4/Attachments/Book(ID=${BookId},IsActiveEntity=false)/Files`,
 					method: "POST",
 					headers: {
 						"Content-type": "application/json"
@@ -45,7 +49,7 @@ sap.ui.define([
 		
 			_createEntity(item)
 				.then((id) => {
-					var url = `/odata/v4/attachments/Files(${id})/content`;
+					var url = `/odata/v4/Attachments/Book(ID=${BookId},IsActiveEntity=false)/Files(ID=${id},IsActiveEntity=false)/content`;
 					item.setUploadUrl(url);
 					var oUploadSet = this.byId("uploadSet");
 					oUploadSet.setHttpRequestMethod("PUT");
@@ -175,32 +179,24 @@ sap.ui.define([
 				var iconUrl;
 				switch (mediaType) {
 					case "image/png":
-					case "image/jpeg":
-						// Custom icon for image files (PNG, JPEG)
-						iconUrl = "https://example.com/icons/image-icon.png";
+						iconUrl = "sap-icon://card";
 						break;
 					case "text/plain":
-						// Custom icon for text files (TXT)
-						iconUrl = "https://example.com/icons/text-file-icon.png";
+						iconUrl = "sap-icon://document-text";
 						break;
 					case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-						// Custom Excel icon URL from Pinterest
-						iconUrl = "https://i.pinimg.com/564x/0f/3b/34/0f3b34b0d3ed49d93c08045b4a7c5c9b.jpg";
+						iconUrl = "sap-icon://excel-attachment";
 						break;
 					case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-						// Custom icon for Word documents (DOCX)
-						iconUrl = "https://example.com/icons/word-icon.png";
+						iconUrl = "sap-icon://doc-attachment";
 						break;
 					case "application/pdf":
-						// Custom icon for PDF files (PDF)
-						iconUrl = "https://example.com/icons/pdf-icon.png";
+						iconUrl = "sap-icon://pdf-attachment";
 						break;
 					default:
-						// Default icon for other file types
-						iconUrl = "https://example.com/icons/default-attachment-icon.png";
+						iconUrl = "sap-icon://attachment";
 				}
 				return iconUrl;
 			}
-			
-    };
-});
+		};
+	});

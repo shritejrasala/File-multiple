@@ -2,11 +2,7 @@ using Attachments as service from '../../srv/service';
 
 annotate service.Book with @(
     UI.LineItem : [
-        {
-            $Type : 'UI.DataField',
-            Label : 'ID',
-            Value : id,
-        },
+        
         {
             $Type : 'UI.DataField',
             Label : 'Name',
@@ -39,11 +35,7 @@ annotate service.Book with @(
     UI.FieldGroup #GeneralInfo : {
         $Type : 'UI.FieldGroupType',
         Data : [
-            {
-                $Type : 'UI.DataField',
-                Label : 'ID',
-                Value : id,
-            },
+            
             {
                 $Type : 'UI.DataField',
                 Label : 'Name',
@@ -94,10 +86,41 @@ annotate service.Book with @(
             Target : '@UI.FieldGroup#GeneralInfo',
         },
         {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'AdditionalDetails',
-            Label : 'Additional Details',
-            Target : '@UI.FieldGroup#AdditionalDetails',
-        },
+        $Type : 'UI.ReferenceFacet',
+        ID    : 'emp_doc_facet',
+        Label : 'Documents',
+        Target:'Files/@UI.LineItem',
+    },
+
     ]
+);
+annotate Attachments.Files with @(
+    UI.LineItem: [
+        { Value: content, Label: 'content' },
+        { Value: mediaType, Label: 'File Name' },
+        { Value: fileName, Label: 'File Type' },
+        {Value:size,Label:'size'},
+        {Value:url,Label:'url'},
+         {Value:f_id_ID,Label:'f_id'}
+    ],
+    UI.FieldGroup#employeedocs: {
+        Data: [
+          { Value: content, Label: 'content' },
+        { Value: mediaType, Label: 'File Name' },
+        { Value: fileName, Label: 'File Type' },
+        {Value:size,Label:'size'},
+        {Value:url,Label:'url'},
+         {Value:f_id_ID,Label:'f_id'}
+        ]
+    },
+        UI.Facets             : [
+        {
+        $Type : 'UI.ReferenceFacet',
+        ID    : 'emp_doc_facet',
+        Label : 'Documents',
+        Target: '@UI.FieldGroup#employeedocs'
+    },
+  
+    ]
+
 );

@@ -26,15 +26,11 @@ xmlns:mvc="sap.ui.core.mvc"
 						<upload:UploadSetItem
 						id="ddd"
 							fileName="{fileName}"
-							mediaType="{mediaType}"
-							url="{url}"
-							thumbnailUrl="{
-								path: 'mediaType',
-								formatter: '.formatThumbnailUrl'
-							}"
-							enabledEdit="false"
-							openPressed="handler.onOpenPressed"
-							removePressed="handler.onRemovePressed"
+                            mediaType="{mediaType}"
+                            url="{url}"
+                            enabledEdit="false"
+                            visibleEdit="false"
+                            openPressed="handler.onOpenPressed"
 						>
 							<upload:attributes>
 								<ObjectAttribute
